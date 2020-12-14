@@ -9,7 +9,7 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class UsersService implements CanActivate, OnInit {
   json;
-  hostname = 'localhost:8000'
+  hostname = '52.53.129.80:8000'
   loginUrl = 'http://'+ this.hostname +'/login/'
   regUrl = 'http://'+ this.hostname +'/register/'
   recipeUrl = 'http://'+ this.hostname +'/recipe/'
