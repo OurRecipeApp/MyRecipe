@@ -69,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'RecipeApp.urls'
@@ -98,10 +99,10 @@ WSGI_APPLICATION = 'RecipeApp.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME' : 'appdb', 
+        'NAME' : 'appdb',
         'USER' : 'root',
-        'PASSWORD' : '@3456tfC()',
-        'HOST' : 'localHost',
+        'PASSWORD' : 'rootroot',
+        'HOST' : 'mysql',
         'PORT' : '3306',
     }
 }
@@ -167,7 +168,9 @@ REST_FRAMEWORK = {
     )
 }
 
+ALLOWED_HOSTS=['*']
+CORS_ORIGIN_ALLOW_ALL = True
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=100000),
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
 }

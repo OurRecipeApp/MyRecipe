@@ -9,14 +9,15 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class UsersService implements CanActivate, OnInit {
   json;
-  loginUrl = 'http://localhost:8000/login/'
-  regUrl = 'http://localhost:8000/register/'
-  recipeUrl = 'http://localhost:8000/recipe/'
-  ingredientUrl = 'http://localhost:8000/recipe/ingredients/'
-  tagUrl = 'http://localhost:8000/recipe/tags/'
-  createRecipeUrl = 'http://localhost:8000/recipe/create/'
-  getRecipeUrl = 'http://localhost:8000/recipe/list/'
-  deleteUrl = 'http://localhost:8000/recipe/burger2/delete/'
+  hostname = 'localhost:8000'
+  loginUrl = 'http://'+ this.hostname +'/login/'
+  regUrl = 'http://'+ this.hostname +'/register/'
+  recipeUrl = 'http://'+ this.hostname +'/recipe/'
+  ingredientUrl = 'http://'+ this.hostname +'/recipe/ingredients/'
+  tagUrl = 'http://'+ this.hostname +'/recipe/tags/'
+  createRecipeUrl = 'http://'+ this.hostname +'/recipe/create/'
+  getRecipeUrl = 'http://'+ this.hostname +'/recipe/list/'
+  deleteUrl = 'http://'+ this.hostname +'/recipe'
   savedToken = ""
   //"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjEzODQ1Nzg0LCJqdGkiOiJkNTBiNTJiZmExMWU0NjQwOWZiYTA3NzlmMTc4ZWI4ZiIsInVzZXJfaWQiOjN9.A5t3gEKWWIkdEgE3SktvOAkpV9QUMCCneJyuPchd0qM"
   //avedToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjEzNzQ0ODM5LCJqdGkiOiI0ZTZhYTkwOWI1ZjI0NjFlOTgzZjUyMWQ4ZGViZjU5ZCIsInVzZXJfaWQiOjJ9.Ji3n1Hoy2GzmtG7KhxqLeY5rsCOysVKqlpfWYK2ERec"
@@ -72,7 +73,7 @@ export class UsersService implements CanActivate, OnInit {
   }
 
   searchUserRecipes(searchText) {
-    // http://localhost:8000/recipe/list/?search=burger2
+    // http://'+ this.hostname +'/recipe/list/?search=burger2
     const searchUrl = this.getRecipeUrl + '?' + 'search' + '=' + searchText
     return this.http.get(searchUrl)
       .toPromise().then((data: any) => {
@@ -203,7 +204,7 @@ export class UsersService implements CanActivate, OnInit {
 
 
   deleteRecipe(url) {
-    let newUrl = url //url.replace('detail', 'delete')
+    let newUrl =  this.deleteUrl + url.split('recipe')[1]
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer ' + this.savedToken)
     headers.set('Accept', '*/*')

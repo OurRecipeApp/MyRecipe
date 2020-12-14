@@ -1,0 +1,14 @@
+FROM alpine:latest
+RUN mkdir -p /opt/myrecipe
+COPY ./ /opt/myrecipe
+RUN apk add python3 python3-dev py3-pip mysql mysql-client mariadb-connector-c-dev mariadb-dev gcc libc-dev libevent-dev
+RUN pip3 install django configparser djangorestframework drf-yasg djangorestframework-simplejwt django-cors-headers
+RUN pip3 install  pymysql django-mysql mysql-connector
+#RUN pip3 install --user django-crispy-formsl mysql-python
+RUN apk --update add libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc openssl-dev curl
+RUN apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
+RUN pip3 install mysqlclient;python3 -m pip install Pillow
+RUN ls -lah /opt/myrecipe
+EXPOSE 8000/tcp
+CMD ["/bin/sh","-c","cd /opt/myrecipe && sleep 20 && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000" ]
+

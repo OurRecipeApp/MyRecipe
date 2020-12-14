@@ -1,0 +1,43 @@
+version: '3.3'
+services:
+  ######################
+  # SMA Docker Images
+  ######################
+  #
+  myrecipe:
+    container_name: myrecipe
+    build:
+      context: .
+      dockerfile: Dockerfile-myrecipe
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+    networks:
+      - sco-bridge
+
+  myrecipe_ui:
+    container_name: myrecipe_ui
+    build:
+      context: .
+      dockerfile: Dockerfile-myrecipe-ui
+    ports:
+      - "80:4200"
+    depends_on:
+      - myrecipe
+    networks:
+      - sco-bridge
+
+  mysql:
+    container_name: mysql
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    ports:
+      - "3333:3306"
+    networks:
+      - sco-bridge
+
+networks:
+  sco-bridge:
+    driver: bridge

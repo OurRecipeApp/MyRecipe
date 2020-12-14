@@ -1,0 +1,8 @@
+FROM alpine:latest
+RUN mkdir -p /opt/myrecipe/recipe_ui
+COPY ./recipe_ui /opt/myrecipe/recipe_ui
+RUN apk add npm
+RUN cd /opt/myrecipe/recipe_ui;npm install -g @angular/cli;npm install
+EXPOSE 4200/tcp
+CMD ["/bin/sh","-c","cd /opt/myrecipe/recipe_ui;ng serve --host 0.0.0.0" ]
+
