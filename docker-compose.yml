@@ -11,8 +11,8 @@ services:
       dockerfile: Dockerfile-myrecipe
     ports:
       - "8000:8000"
-    depends_on:
-      - mysql
+#    depends_on:
+#      - mysql
     networks:
       - sco-bridge
 
@@ -23,8 +23,8 @@ services:
       dockerfile: Dockerfile-myrecipe-ui
     ports:
       - "80:4200"
-    depends_on:
-      - myrecipe
+#    depends_on:
+#      - myrecipe
     networks:
       - sco-bridge
 
