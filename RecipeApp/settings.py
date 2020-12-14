@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import datetime
 import os
-import django_heroku
-import dj_database_url
+#import django_heroku
+#import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +29,8 @@ SECRET_KEY = '-%f#+^u0#uxq0qm!$o-zvmo)&tof(t#g$n#q01v2&%&$$1o9gc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = ('http://localhost:8081')
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'users.Custom_User'
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django_mysql',
     'drf_yasg',
     'rest_framework_simplejwt.token_blacklist',
+    'corsheaders',
     #S'pillow',
 
     'django.contrib.admin',
@@ -64,6 +67,9 @@ SWAGGER_SETTINGS={
 }
 
 MIDDLEWARE = [
+     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -108,9 +114,9 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config()
+#db_from_env = dj_database_url.config()
 
-DATABASES['default']. update(db_from_env)
+#DATABASES['default']. update(db_from_env)
 
 
 # Password validation
@@ -178,4 +184,4 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
 }
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
