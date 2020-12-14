@@ -21,7 +21,7 @@
   bottom: 0px;
   left: 0px;
   background-color: white;
-  /*background-image:url("src/assets/img/jumbotron-image.jpg");*/
+  background-image:url("https://cdn.hipwallpaper.com/i/91/74/kwU27u.jpg");
   border-radius: 50px;
   background-size: 1320px 250px;
   background-repeat: no-repeat;
@@ -76,6 +76,7 @@ p{
 
 h4{
   text-align: center;
+  font-size: 35px;
   font-family: 'Serifa Light', SansSerif;
   text-decoration: black underline;
 }

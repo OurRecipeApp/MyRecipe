@@ -204,7 +204,7 @@ export class UsersService implements CanActivate, OnInit {
 
 
   deleteRecipe(url) {
-    let newUrl =  this.deleteUrl + url.split('recipe')[1]
+    let newUrl =  url//this.deleteUrl + url.split('recipe')[1]
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer ' + this.savedToken)
     headers.set('Accept', '*/*')
